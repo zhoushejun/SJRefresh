@@ -9,6 +9,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "UIScrollView+SVPullToRefresh.h"
+#import "SJPullRefreshImageView.h"
 
 //fequal() and fequalzro() from http://stackoverflow.com/a/1614761/184130
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
@@ -44,6 +45,7 @@ static CGFloat const SVPullToRefreshViewHeight = 60;
 @property (nonatomic, assign) BOOL showsPullToRefresh;
 @property (nonatomic, assign) BOOL showsDateLabel;
 @property(nonatomic, assign) BOOL isObserving;
+@property (nonatomic, strong) SJPullRefreshImageView *imgv;
 
 - (void)resetScrollViewContentInset;
 - (void)setScrollViewContentInsetForLoading;
@@ -545,6 +547,12 @@ static char UIScrollViewPullToRefreshView;
         }
     }
     NSLog(@"%f", self.scrollView.bounds.origin.y);
+    CGFloat w = 60;
+    if (self.scrollView.bounds.origin.y > -w) {
+        self.imgv.bounds = CGRectMake(0, 0, ABS(self.scrollView.bounds.origin.y), ABS(self.scrollView.bounds.origin.y));
+    }else {
+        self.imgv.bounds = CGRectMake(0, 0, w, w);
+    }
 }
 
 #pragma mark - Getters
@@ -597,6 +605,7 @@ static char UIScrollViewPullToRefreshView;
         _subtitleLabel.textColor = textColor;
         _subtitleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_subtitleLabel];
+        [self addSubview:self.imgv];
     }
     return _subtitleLabel;
 }
@@ -797,8 +806,15 @@ static char UIScrollViewPullToRefreshView;
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         self.arrow.layer.transform = CATransform3DMakeRotation(degrees, 0, 0, 1);
         self.arrow.layer.opacity = !hide;
-        //[self.arrow setNeedsDisplay];//ios 4
     } completion:NULL];
+}
+
+- (SJPullRefreshImageView *)imgv {
+    if (!_imgv) {
+        _imgv = [[SJPullRefreshImageView alloc] initWithFrame:CGRectMake(100, (self.frame.size.height - 20), 30, 30)];
+        _imgv.image = [UIImage imageNamed:@"money_refresh"];
+    }
+    return _imgv;
 }
 
 @end

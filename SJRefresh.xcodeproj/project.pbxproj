@@ -142,6 +142,7 @@
 		1832201D1DA8C32C0013EBEB /* img_arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 18321F991DA8C32C0013EBEB /* img_arrow_down.png */; };
 		1832201E1DA8C32C0013EBEB /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18321F9C1DA8C32C0013EBEB /* UIScrollView+SVInfiniteScrolling.m */; };
 		1832201F1DA8C32C0013EBEB /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18321F9E1DA8C32C0013EBEB /* UIScrollView+SVPullToRefresh.m */; };
+		1882B55C1DAA184C00CBE80C /* SJPullRefreshImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1882B55B1DAA184C00CBE80C /* SJPullRefreshImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -287,6 +288,8 @@
 		18321F9C1DA8C32C0013EBEB /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		18321F9D1DA8C32C0013EBEB /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		18321F9E1DA8C32C0013EBEB /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		1882B55A1DAA184C00CBE80C /* SJPullRefreshImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPullRefreshImageView.h; sourceTree = "<group>"; };
+		1882B55B1DAA184C00CBE80C /* SJPullRefreshImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPullRefreshImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +327,8 @@
 				18321EC71DA8C2CF0013EBEB /* AppDelegate.m */,
 				18321EC91DA8C2CF0013EBEB /* ViewController.h */,
 				18321ECA1DA8C2CF0013EBEB /* ViewController.m */,
+				1882B55A1DAA184C00CBE80C /* SJPullRefreshImageView.h */,
+				1882B55B1DAA184C00CBE80C /* SJPullRefreshImageView.m */,
 				18321ECC1DA8C2CF0013EBEB /* Main.storyboard */,
 				18321ECF1DA8C2CF0013EBEB /* Assets.xcassets */,
 				18321ED11DA8C2CF0013EBEB /* LaunchScreen.storyboard */,
@@ -1194,6 +1199,7 @@
 				18321ECB1DA8C2CF0013EBEB /* ViewController.m in Sources */,
 				18321EC81DA8C2CF0013EBEB /* AppDelegate.m in Sources */,
 				18321EC51DA8C2CF0013EBEB /* main.m in Sources */,
+				1882B55C1DAA184C00CBE80C /* SJPullRefreshImageView.m in Sources */,
 				1832201F1DA8C32C0013EBEB /* UIScrollView+SVPullToRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1349,6 +1355,7 @@
 				18321ED91DA8C2CF0013EBEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
