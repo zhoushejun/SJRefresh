@@ -1028,6 +1028,7 @@
 				TargetAttributes = {
 					18321EBF1DA8C2CF0013EBEB = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 6NLHX4X49M;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1318,9 +1319,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6NLHX4X49M;
 				INFOPLIST_FILE = SJRefresh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = coyote.500.com.SJRefresh;
+				PRODUCT_BUNDLE_IDENTIFIER = github.zhoushejun.SJRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1329,9 +1331,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6NLHX4X49M;
 				INFOPLIST_FILE = SJRefresh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = coyote.500.com.SJRefresh;
+				PRODUCT_BUNDLE_IDENTIFIER = github.zhoushejun.SJRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

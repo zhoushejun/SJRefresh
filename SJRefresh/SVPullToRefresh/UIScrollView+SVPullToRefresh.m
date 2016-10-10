@@ -15,6 +15,8 @@
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
 #define fequalzero(a) (fabs(a) < FLT_EPSILON)
 
+#define PULL_REFRESH_IMAGE_VIEW
+
 static CGFloat const SVPullToRefreshViewHeight = 60;
 
 //@interface SVPullToRefreshArrow : UIView
@@ -320,6 +322,7 @@ static char UIScrollViewPullToRefreshView;
             case SVPullToRefreshStateLoading:
                 if (!self.imgv_animationBG) {
                     [self.activityIndicatorView startAnimating];
+                    [self.imgv startAnimation];
                 }
                 switch (self.position) {
                     case SVPullToRefreshPositionTop:
@@ -546,12 +549,22 @@ static char UIScrollViewPullToRefreshView;
                 break;
         }
     }
-    NSLog(@"%f", self.scrollView.bounds.origin.y);
-    CGFloat w = 60;
-    if (self.scrollView.bounds.origin.y > -w) {
-        self.imgv.bounds = CGRectMake(0, 0, ABS(self.scrollView.bounds.origin.y), ABS(self.scrollView.bounds.origin.y));
-    }else {
-        self.imgv.bounds = CGRectMake(0, 0, w, w);
+    
+    if (!self.imgv.isAnimation) {
+        CGFloat w = 60;
+        CGFloat w0 = 40;
+        if (self.scrollView.bounds.origin.y > -w0) {
+            self.imgv.bounds = CGRectMake(0, 0, w0/2.0, w0/2.0);
+        }
+        else if (self.scrollView.bounds.origin.y > -w) {
+            self.imgv.bounds = CGRectMake(0, 0, ABS(self.scrollView.bounds.origin.y)/2.0, ABS(self.scrollView.bounds.origin.y)/2.0);
+        }else {
+            self.imgv.bounds = CGRectMake(0, 0, w/2.0, w/2.0);
+        }
+        CGFloat y0 = ABS(self.scrollView.bounds.origin.y);
+        y0 = y0<w?y0:w;
+        [self.imgv drawStartAngle:-M_PI_2+0.2
+                         endAngle:-M_PI_2+2.0*M_PI*y0/w-0.2];
     }
 }
 
@@ -561,7 +574,9 @@ static char UIScrollViewPullToRefreshView;
     if(!_arrow) {
         _arrow = [[UIImageView alloc]initWithFrame:CGRectMake(0, self.bounds.size.height-54, 21, 21)];
         _arrow.image = [UIImage imageNamed:@"img_arrow_down.png"];
+#ifndef PULL_REFRESH_IMAGE_VIEW
         [self addSubview:_arrow];
+#endif
     }
     return _arrow;
 }
@@ -579,7 +594,9 @@ static char UIScrollViewPullToRefreshView;
     if(!_activityIndicatorView) {
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         _activityIndicatorView.hidesWhenStopped = YES;
+#ifndef PULL_REFRESH_IMAGE_VIEW
         [self addSubview:_activityIndicatorView];
+#endif
     }
     return _activityIndicatorView;
 }
@@ -592,7 +609,9 @@ static char UIScrollViewPullToRefreshView;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = textColor;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
+#ifndef PULL_REFRESH_IMAGE_VIEW
         [self addSubview:_titleLabel];
+#endif
     }
     return _titleLabel;
 }
@@ -604,8 +623,9 @@ static char UIScrollViewPullToRefreshView;
         _subtitleLabel.backgroundColor = [UIColor clearColor];
         _subtitleLabel.textColor = textColor;
         _subtitleLabel.textAlignment = NSTextAlignmentCenter;
+#ifndef PULL_REFRESH_IMAGE_VIEW
         [self addSubview:_subtitleLabel];
-        [self addSubview:self.imgv];
+#endif
     }
     return _subtitleLabel;
 }
@@ -725,6 +745,8 @@ static char UIScrollViewPullToRefreshView;
 }
 
 - (void)startAnimating{
+    [self.imgv startAnimation];
+
     switch (self.position) {
         case SVPullToRefreshPositionTop:
             
@@ -754,6 +776,7 @@ static char UIScrollViewPullToRefreshView;
 
 - (void)stopAnimating {
     self.state = SVPullToRefreshStateStopped;
+    [self.imgv endAnimation];
     
     switch (self.position) {
         case SVPullToRefreshPositionTop:
@@ -811,8 +834,11 @@ static char UIScrollViewPullToRefreshView;
 
 - (SJPullRefreshImageView *)imgv {
     if (!_imgv) {
-        _imgv = [[SJPullRefreshImageView alloc] initWithFrame:CGRectMake(100, (self.frame.size.height - 20), 30, 30)];
+        _imgv = [[SJPullRefreshImageView alloc] initWithFrame:CGRectMake((self.frame.size.width-30)/2.0, (self.frame.size.height - 30), 30, 30)];
         _imgv.image = [UIImage imageNamed:@"money_refresh"];
+#ifdef PULL_REFRESH_IMAGE_VIEW
+        [self addSubview:_imgv];
+#endif
     }
     return _imgv;
 }
