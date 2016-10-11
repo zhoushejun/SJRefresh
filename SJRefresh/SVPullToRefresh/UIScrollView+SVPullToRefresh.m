@@ -515,7 +515,9 @@ static char UIScrollViewPullToRefreshView;
         }
         else if(contentOffset.y < scrollOffsetThreshold && self.scrollView.isDragging && self.state == SVPullToRefreshStateStopped && self.position == SVPullToRefreshPositionTop){
             self.state = SVPullToRefreshStateTriggered;
+#ifdef PULL_REFRESH_IMAGE_VIEW
             self.state = SVPullToRefreshStateLoading;
+#endif
 
 //            [self updatePullPercent:contentOffset.y/scrollOffsetThreshold];
         }
