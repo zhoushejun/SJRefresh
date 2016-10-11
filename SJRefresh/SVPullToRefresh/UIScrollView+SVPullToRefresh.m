@@ -838,7 +838,7 @@ static char UIScrollViewPullToRefreshView;
 
 - (SJPullRefreshImageView *)imgv {
     if (!_imgv) {
-        _imgv = [[SJPullRefreshImageView alloc] initWithFrame:CGRectMake((self.frame.size.width-30)/2.0, (self.frame.size.height - 30), 30, 30)];
+        _imgv = [[SJPullRefreshImageView alloc] initWithFrame:CGRectMake((self.frame.size.width-30)/2.0, (self.frame.size.height - 40), 30, 30)];
         _imgv.image = [UIImage imageNamed:@"money_refresh"];
 #ifdef PULL_REFRESH_IMAGE_VIEW
         [self addSubview:_imgv];
